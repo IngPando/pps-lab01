@@ -37,7 +37,7 @@ public class SmartDoorLockImpl implements SmartDoorLock {
 
     private void checkFailedAttempts() {
         wrongUnlockingAttemptsNumber++;
-        if (wrongUnlockingAttemptsNumber == MAX_UNLOCKING_ATTEMPTS_BEFORE_BLOCK) {
+        if (getFailedAttempts() == getMaxAttempts()) {
             this.isBlocked = true;
         }
     }
@@ -73,6 +73,9 @@ public class SmartDoorLockImpl implements SmartDoorLock {
 
     @Override
     public void reset() {
-
+        isBlocked = false;
+        isLocked = false;
+        isPinSetted = false;
+        wrongUnlockingAttemptsNumber = RESET_WRONG_ATTEMPT_NUMBER;
     }
 }
