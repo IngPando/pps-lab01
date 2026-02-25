@@ -31,6 +31,8 @@ public class SmartDoorLockImpl implements SmartDoorLock {
             } else {
                 checkFailedAttempts();
             }
+        } else {
+            throw new IllegalStateException("Can't unlock the door in BLOCKED state, need to reset first");
         }
 
     }

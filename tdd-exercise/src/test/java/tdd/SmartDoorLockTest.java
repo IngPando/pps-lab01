@@ -69,5 +69,12 @@ public class SmartDoorLockTest {
         testIsDoorLockBlocked();
     }
 
+    @Test
+    void testCantUnlockDoorWhileBlocked(){
+        testToManyWrongPinBlockTheDoor();
+        assertThrows(IllegalStateException.class,() -> {
+            doorLock.unlock(pin);
+        });
+    }
 
 }
